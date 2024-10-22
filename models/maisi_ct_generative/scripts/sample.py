@@ -241,6 +241,7 @@ def ldm_conditional_sample_one_image(
         # synthesize latents
         noise_scheduler.set_timesteps(num_inference_steps=num_inference_steps)
         for t in tqdm(noise_scheduler.timesteps, ncols=110):
+            # Get controlnet output
             down_block_res_samples, mid_block_res_sample = controlnet(
                 x=latents, timesteps=torch.Tensor((t,)).to(device), controlnet_cond=controlnet_cond_vis
             )
